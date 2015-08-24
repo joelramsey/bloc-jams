@@ -1,11 +1,5 @@
 var pointsArray = document.getElementsByClassName('point');
 
-function myForEach(array, pointFunction){
-    for (var i = 0; i < array.length; i++){
-        pointFunction(i);
-    }
-};
-
 var animatePoints = function(points) {
 
         var revealPoint = function(index) {
