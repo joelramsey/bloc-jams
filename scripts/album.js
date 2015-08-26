@@ -1,4 +1,3 @@
-// Example Album
  var albumPicasso = {
      name: 'The Colors',
      artist: 'Pablo Picasso',
@@ -14,7 +13,6 @@
      ]
  };
  
- // Another Example Album
  var albumMarconi = {
      name: 'The Telephone',
      artist: 'Guglielmo Marconi',
@@ -27,6 +25,21 @@
          { name: 'Fits in your pocket', length: '3:21'},
          { name: 'Can you hear me now?', length: '3:14' },
          { name: 'Wrong phone number', length: '2:15'}
+     ]
+ };
+
+ var albumRamsey = {
+     name: 'Ramsey Stories',
+     artist: 'Joel Ramsey',
+     label: 'Joelism',
+     year: '2015',
+     albumArtUrl: 'assets/images/album_covers/15.png',
+     songs: [
+         { name: 'JavaScript Mess', length: '1:01' },
+         { name: 'Riding RoR', length: '5:01' },
+         { name: 'Loving the Coffee', length: '3:21'},
+         { name: 'Infinite Loop Land', length: '3:14' },
+         { name: 'Bloc kicks my Butt!', length: '2:15'}
      ]
  };
 
@@ -69,8 +82,17 @@
  
  };
  
- window.onload = function() {
-   
-     setCurrentAlbum(albumPicasso);
-     
- };
+ setCurrentAlbum(albumPicasso);
+
+ var albums = [albumPicasso, albumMarconi, albumRamsey];
+ var counter = 0;
+ var albumCover = document.getElementsByClassName('album-cover-art')[0];
+
+ var albumPicker = function(){
+    if(++counter >= albums.length){
+        counter = 0;
+    }
+    setCurrentAlbum(albums[counter]);
+ }  
+ 
+ albumCover.addEventListener('click', albumPicker);    
