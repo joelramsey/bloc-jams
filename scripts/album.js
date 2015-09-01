@@ -119,7 +119,7 @@ var clickHandler = function(targetElement){
     var songItem = getSongItem(targetElement);
 
     if (currentlyPlayingSong === null) {
-        songItem,innerHTML = pauseButtonTemplate;
+        songItem.innerHTML = pauseButtonTemplate;
         currentlyPlayingSong = songItem.getAttribute('data-song-number');
     } else if (currentlyPlayingSong === songItem.getAttribute('data-song-number')) {
         songItem.innerHTML = playButtonTemplate;
@@ -137,7 +137,8 @@ var clickHandler = function(targetElement){
  var songRows = document.getElementsByClassName('album-view-song-item');
  
  // Album button templates
- var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>'
+ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
+ var pauseButtonTemplate = '<a class="album-song-button"><span class="ion-pause"></span></a>';
 
  //store the state of currently playing songs
  var currentlyPlayingSong = null;   
@@ -179,7 +180,7 @@ var clickHandler = function(targetElement){
  var albumCover = document.getElementsByClassName('album-cover-art')[0];
 
  var albumPicker = function(){
-    if(++counter >= albums.length){
+    if (++counter >= albums.length){
         counter = 0;
     }
     setCurrentAlbum(albums[counter]);
