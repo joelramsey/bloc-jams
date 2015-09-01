@@ -85,8 +85,14 @@
 var findParentByClassName = function(element, targetClass) {
     
     var currentParent = element.parentElement;
+    if (currentParent === null) {
+        alert('No parent found');
+    }
     
     while (currentParent.className != targetClass) {
+        if (currentParent.parentElement === null){
+            alert('No parent found with that class name');
+        }
         currentParent = currentParent.parentElement
     }
     
@@ -107,7 +113,7 @@ var getSongItem = function(element) {
         case 'song-item-duration':
             return findParentByClassName(element, 'album-view-song-item').querySelector('.song-item-number');
         case 'song-item-number':
-            return element;
+            return element;    
         default:
             return;
     }
