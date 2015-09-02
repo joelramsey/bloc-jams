@@ -3,6 +3,7 @@ body.album {
      background-repeat: repeat-y;
      background-position: center center;
      background-size: cover;
+     padding-bottom: 150px;
  }
  
  .album-cover-art {
@@ -98,6 +99,11 @@ body.album {
  }
  
  @media (max-width: 64rem) and (min-width: 20rem) {
+
+    body.album {
+         padding-bottom: 200px;
+     }
+     
     .album-view-song-list {
          position: relative;
          top: 1rem;
