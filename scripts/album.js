@@ -1,4 +1,4 @@
- 
+
 
  var createSongRow = function(songNumber, songName, songLength) {
      
@@ -110,12 +110,14 @@
  
     if (currentSoundFile) {
        
-        currentSoundFile.bind('timeupdate', function(event) {
+        currentSoundFile.bind('timeupdate', function timeUpdate(event) {
             
             var seekBarFillRatio = this.getTime() / this.getDuration();
             var $seekBar = $('.seek-control .seek-bar');
  
             updateSeekPercentage($seekBar, seekBarFillRatio);
+            setCurrentTimeInPlayerBar(currentSoundFile.getTime());
+            setTotalTimeInPlayerBar(currentSoundFile.getDuration());
         });
     }
  
@@ -272,6 +274,7 @@ var togglePlayFromPlayerBar = function(){
     $('.currently-playing .artist-name').text(currentSongFromAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.name + " - " + currentAlbum.artist);
     $('.left-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar();
  };
  
  // Album button templates
@@ -326,6 +329,27 @@ var togglePlayFromPlayerBar = function(){
         currentSoundFile.setVolume(volume);
     }
  }
+
+ var setCurrentTimeInPlayerBar = function(currentTime) {
+    $(".current-time").text(filterTimeCode(currentTime));
+ }
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+    $(".total-time").text(filterTimeCode(totalTime));
+ }
+
+var filterTimeCode = function(timeInSeconds) {
+    var time = parseFloat(timeInSeconds);
+    var minutes = Math.floor(time/60);
+    var seconds = Math.floor(time - minutes * 60);
+    if (seconds >= 10) {
+        var formatTime = minutes + ":" + seconds;
+    } else {
+        var formatTime = minutes + ":0" + seconds;
+    }
+
+    return formatTime;
+};
 
  var getSongNumberCell = function(number) {
     return $('.song-item-number[data-song-number="' + number + '"]');
